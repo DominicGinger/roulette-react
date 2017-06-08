@@ -29,7 +29,7 @@ class BettingRow extends React.Component {
   render () {
     return (
       <div className='betting-row' >
-        <a onClick={this.clearForm}>X </a>
+        <a className="reset" onClick={this.clearForm}>X </a>
         <input ref='amountInput' className='amount' onChange={this.updateAmount} type='number' />
         <span onChange={this.setOption} >
           {this.props.options.map((option, index) => (

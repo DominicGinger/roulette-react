@@ -5,8 +5,18 @@ body {
 }
 
 .centre {
-  width: 50%;
   margin: 0 auto;
+  max-width: 33.25em;
+  min-width: 9.75em;
+}
+
+.money {
+  margin-top: 10px;
+  font-size: 2em;
+}
+
+.money .label {
+  font-weight: bold;
 }
 
 .edge {
@@ -29,6 +39,7 @@ body {
 .betting-row .amount {
   width: 25%;
   font-size: 1em;
+  border: #EEE solid 2px;
 }
 
 .betting-row input[type="radio"] {
@@ -43,6 +54,30 @@ body {
   cursor: pointer;
 }
 
-.betting-row span.selected {
+.betting-row span.selected label {
   color: green;
+}
+
+.multi-bet {
+  margin-top: 10px;
+  font-size: 2em;
+}
+
+.multi-bet .text {
+  font-weight: bold;
+}
+
+.multi-bet .number {
+  cursor: pointer;
+  user-select: none;
+}
+
+.multi-bet .selected-number {
+  color: green;
+}
+
+.reset {
+  cursor: pointer;
+  user-select: none;
+  color: red;
 }

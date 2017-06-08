@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
 import edges from './roulette';
 
 import Edge from './edge';
 import Money from './money';
 import BettingRow from './betting-row';
+import MultiBet from './multi-bet';
 
 class App extends Component {
 
@@ -12,6 +12,8 @@ class App extends Component {
     super(props);
     this.clickHandler = this.clickHandler.bind(this);
     this.makeBet = this.makeBet.bind(this);
+    this.multiBet = this.multiBet.bind(this);
+    this.resetMoney = this.resetMoney.bind(this);
     this.state = {
       money: 1000,
       edge: { number: 'GO', colour: 'black' },
@@ -79,11 +81,29 @@ class App extends Component {
     this.setState({ ...this.state, activeBets });
   }
 
+  multiBet(amount) {
+    let currentEdge;
+    let money = this.state.money;
+    const { redBlack, oddEven, topBottom } = this.state.activeBets;
+    for(let i = 0; i < amount; i++) {
+      currentEdge = this.getEdge();
+      money += this.checkRedBlack(currentEdge, redBlack);
+      money += this.checkOddEven(currentEdge, oddEven);
+      money += this.check1819(currentEdge, topBottom);
+    }
+    this.setState({ ...this.state, edge: currentEdge, money });
+  }
+
+  resetMoney() {
+    this.setState({ ...this.state, money: 1000 });
+  }
+
   render() {
     return (
       <div className='centre'>
-        <Money amount={this.state.money} />
+        <Money amount={this.state.money} resetMoney={this.resetMoney} />
         <Edge {...this.state.edge} clickHandler={this.clickHandler} />
+        <MultiBet handler={this.multiBet} />
         <BettingRow className='red-black' clickHandler={this.makeBet.bind(this, 'redBlack')} options={[{ label: 'Red' }, { label: 'Black' }]} />
         <BettingRow className='odd-even' clickHandler={this.makeBet.bind(this, 'oddEven')} options={[{ label: 'Odd' }, { label: 'Even' }]} />
         <BettingRow className='eighteen-nineteen' clickHandler={this.makeBet.bind(this, 'topBottom')} options={[{ label: '1-18' }, { label: '19-36' }]} />
