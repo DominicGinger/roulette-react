@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.centre {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.edge {
+  user-select: none;
+  font-size: 10em;
+  text-align: center;
+  border: #EEE solid 2px;
+}
+
+.edge:hover {
+  cursor: pointer;
+  background-color: #EEE;
+}
+
+.betting-row {
+  margin-top: 10px;
+  font-size: 2em;
+}
+
+.betting-row .amount {
+  width: 25%;
+  font-size: 1em;
+}
+
+.betting-row input[type="radio"] {
+  display: none;
+}
+
+.betting-row a {
+  cursor: pointer;
+}
+
+.betting-row label {
+  cursor: pointer;
+}
+
+.betting-row span.selected {
+  color: green;
+}
