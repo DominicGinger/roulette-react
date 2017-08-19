@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Grid, Row, Col } from 'react-bootstrap';
+
 import edges from './roulette';
 
 import Edge from './edge';
@@ -100,14 +102,37 @@ class App extends Component {
 
   render() {
     return (
-      <div className='centre'>
-        <Money amount={this.state.money} resetMoney={this.resetMoney} />
-        <Edge {...this.state.edge} clickHandler={this.clickHandler} />
-        <MultiBet handler={this.multiBet} />
-        <BettingRow className='red-black' clickHandler={this.makeBet.bind(this, 'redBlack')} options={[{ label: 'Red' }, { label: 'Black' }]} />
-        <BettingRow className='odd-even' clickHandler={this.makeBet.bind(this, 'oddEven')} options={[{ label: 'Odd' }, { label: 'Even' }]} />
-        <BettingRow className='eighteen-nineteen' clickHandler={this.makeBet.bind(this, 'topBottom')} options={[{ label: '1-18' }, { label: '19-36' }]} />
-      </div>
+      <Grid>
+        <Row>
+          <Col>
+            <Money amount={this.state.money} resetMoney={this.resetMoney} />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <Edge {...this.state.edge} clickHandler={this.clickHandler} />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col md={4} >
+            <BettingRow clickHandler={this.makeBet.bind(this, 'redBlack')} options={[{ label: 'Red' }, { label: 'Black' }]} />
+          </Col>
+          <Col md={4} >
+            <BettingRow clickHandler={this.makeBet.bind(this, 'oddEven')} options={[{ label: 'Odd' }, { label: 'Even' }]} />
+          </Col>
+          <Col md={4} >
+            <BettingRow clickHandler={this.makeBet.bind(this, 'topBottom')} options={[{ label: '1-18' }, { label: '19-36' }]} />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <MultiBet handler={this.multiBet} />
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }
