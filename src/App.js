@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
 
 import edges from './roulette';
 
@@ -35,7 +34,7 @@ class App extends Component {
     } else if (redBlackBet.option === 1 && currentEdge.colour === 'black') {
       return redBlackBet.amount;
     } else {
-       return -redBlackBet.amount;
+      return -redBlackBet.amount;
     }
   }
 
@@ -102,37 +101,27 @@ class App extends Component {
 
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col>
-            <Money amount={this.state.money} resetMoney={this.resetMoney} />
-          </Col>
-        </Row>
+      <div className='container'>
+        <Money amount={this.state.money} resetMoney={this.resetMoney} />
 
-        <Row>
-          <Col>
+        <div className='row'>
+          <div className='col'>
             <Edge {...this.state.edge} clickHandler={this.clickHandler} />
-          </Col>
-        </Row>
+          </div>
+        </div>
 
-        <Row>
-          <Col md={4} >
-            <BettingRow clickHandler={this.makeBet.bind(this, 'redBlack')} options={[{ label: 'Red' }, { label: 'Black' }]} />
-          </Col>
-          <Col md={4} >
-            <BettingRow clickHandler={this.makeBet.bind(this, 'oddEven')} options={[{ label: 'Odd' }, { label: 'Even' }]} />
-          </Col>
-          <Col md={4} >
-            <BettingRow clickHandler={this.makeBet.bind(this, 'topBottom')} options={[{ label: '1-18' }, { label: '19-36' }]} />
-          </Col>
-        </Row>
+        <div className='row'>
+          <BettingRow clickHandler={this.makeBet.bind(this, 'redBlack')} options={[{ label: 'Red' }, { label: 'Black' }]} />
+          <BettingRow clickHandler={this.makeBet.bind(this, 'oddEven')} options={[{ label: 'Odd' }, { label: 'Even' }]} />
+          <BettingRow clickHandler={this.makeBet.bind(this, 'topBottom')} options={[{ label: '1-18' }, { label: '19-36' }]} />
+        </div>
 
-        <Row>
-          <Col>
+        <div className='row'>
+          <div className='col'>
             <MultiBet handler={this.multiBet} />
-          </Col>
-        </Row>
-      </Grid>
+          </div>
+        </div>
+      </div>
     );
   }
 }

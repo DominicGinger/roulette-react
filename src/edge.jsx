@@ -3,9 +3,9 @@ import { PropTypes } from 'prop-types';
 
 const Edge = props => (
   <a onClick={props.clickHandler}>
-    <div className='edge' style={{ color: props.colour} }>
+    <h1 className='edge' style={{ color: props.colour} }>
       {props.number}
-    </div>
+    </h1>
   </a>
 );
 

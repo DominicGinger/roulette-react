@@ -28,19 +28,25 @@ class BettingRow extends React.Component {
 
   render () {
     return (
-      <div className='betting-row' >
-        <a className="reset" onClick={this.clearForm}>X </a>
-        <input ref='amountInput' className='amount' onChange={this.updateAmount} type='number' />
-        <span onChange={this.setOption} >
+      <div className='col-12 col-lg-6 row'>
+        <div className='col-3'>
+          <button onClick={this.clearForm} type="button" className="btn btn-danger">
+            Reset
+          </button>
+        </div>
+        <div className="col-4">
+          <input type="number" ref='amountInput' onChange={this.updateAmount} className="form-control" />
+        </div>
+        <div className='col-5' onChange={this.setOption} >
           {this.props.options.map((option, index) => (
-            <span key={index} className={this.state.option === index ? 'selected' : ''}>
-              <label>
-              <input type='radio' value={index} checked={this.state.option === index} />
-              &nbsp;{option.label}&nbsp;
-            </label>
+            <span key={index} className={'form-check form-check-inline ' + (this.state.option === index ? 'selected' : '')}>
+              <label className="form-check-label">
+                <input className='form-check-input' type='radio' value={index} checked={this.state.option === index} />
+                {' ' + option.label}
+              </label>
             </span>
           ))}
-        </span>
+        </div>
       </div>
     );
   }
