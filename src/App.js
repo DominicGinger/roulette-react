@@ -14,7 +14,7 @@ class App extends Component {
     this.clickHandler = this.clickHandler.bind(this);
     this.makeBet = this.makeBet.bind(this);
     this.multiBet = this.multiBet.bind(this);
-    this.resetMoney = this.resetMoney.bind(this);
+    this.reset = this.reset.bind(this);
     this.state = {
       money: 1000,
       edge: { number: 'GO', colour: 'black' },
@@ -98,31 +98,37 @@ class App extends Component {
     this.setState({ ...this.state, edge: currentEdge, money });
   }
 
-  resetMoney() {
-    this.setState({ ...this.state, money: 1000 });
+  reset() {
+    this.setState({
+      money: 1000,
+      edge: { number: 'GO', colour: 'black' },
+      activeBets: []
+    });
   }
 
   render() {
+    const { activeBets, money, edge } = this.state;
+
     return (
       <div className='container'>
         <div className='row justify-content-md-center'>
           <div className='content col-12 col-md-8 p-5 mt-5 mb-5'>
-            <Money amount={this.state.money} resetMoney={this.resetMoney} />
+            <Money amount={money} resetMoney={this.reset} />
 
-            <Edge {...this.state.edge} clickHandler={this.clickHandler} />
+            <Edge {...edge} clickHandler={this.clickHandler} />
 
             <MultiBet handler={this.multiBet} />
 
             <BettingRow
-              amount={this.state.activeBets['redBlack']}
+              {...activeBets.redBlack}
               clickHandler={this.makeBet.bind(this, 'redBlack')}
               options={[{ label: 'Red' }, { label: 'Black' }]} />
             <BettingRow
-              clear={!this.state.activeBets['oddEven']}
+              {...activeBets.oddEven}
               clickHandler={this.makeBet.bind(this, 'oddEven')}
               options={[{ label: 'Odd' }, { label: 'Even' }]} />
             <BettingRow
-              clear={!this.state.activeBets['topBottom']}
+              {...activeBets.topBottom}
               clickHandler={this.makeBet.bind(this, 'topBottom')}
               options={[{ label: '1-18' }, { label: '19-36' }]} />
           </div>

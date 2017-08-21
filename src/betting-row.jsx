@@ -2,9 +2,9 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 class BettingRow extends React.Component {
-  constructor() {
-    super();
-    this.state = { option: -1, amount: 0 };
+  constructor(props) {
+    super(props);
+    this.state = { option: props.option || -1, amount: props.amount || 0 };
     this.updateAmount = this.updateAmount.bind(this);
     this.setOption = this.setOption.bind(this);
     this.clearForm = this.clearForm.bind(this);
@@ -24,6 +24,13 @@ class BettingRow extends React.Component {
     this.setState({ option: -1, amount: 0 });
     this.refs.amountInput && (this.refs.amountInput.value = '');
     this.props.clickHandler({ option: -1, amount: 0 })
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!newProps.option && !newProps.amount) {
+      this.setState({ option: -1, amount: 0 });
+      this.refs.amountInput && (this.refs.amountInput.value = '');
+    }
   }
 
   render () {
