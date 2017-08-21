@@ -18,12 +18,13 @@ class MultiBet extends React.Component {
 
   render () {
     return (
-      <div>
-        <span>Rounds </span>
-        <span onClick={() => this.clickHandler(100, 0)}> 100 </span>
-        <span onClick={() => this.clickHandler(1000, 1)}> 1000 </span>
-        <span onClick={() => this.clickHandler(10000, 2)}> 10,000 </span>
-        <span onClick={() => this.clickHandler(1000000, 3)}> 1,000,000 </span>
+      <div className='row justify-content-md-center mb-4'>
+        <div className='col-auto btn-group' role='group'>
+          <button type='button' className='lead btn btn-secondary' onClick={() => this.clickHandler(100, 0)}> 100 </button>
+          <button type='button' className='lead btn btn-secondary' onClick={() => this.clickHandler(1000, 1)}> 1000 </button>
+          <button type='button' className='lead btn btn-secondary' onClick={() => this.clickHandler(10000, 2)}> 10,000 </button>
+          <button type='button' className='lead btn btn-secondary' onClick={() => this.clickHandler(1000000, 3)}> 1,000,000 </button>
+        </div>
       </div>
     );
   }

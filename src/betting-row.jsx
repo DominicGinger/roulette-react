@@ -22,22 +22,22 @@ class BettingRow extends React.Component {
 
   clearForm() {
     this.setState({ option: -1, amount: 0 });
-    this.refs.amountInput.value = '';
+    this.refs.amountInput && (this.refs.amountInput.value = '');
     this.props.clickHandler({ option: -1, amount: 0 })
   }
 
   render () {
     return (
-      <div className='col-12 col-lg-6 row'>
-        <div className='col-3'>
+      <div className='row mb-4 justify-content-md-center'>
+        <div className='col-auto'>
           <button onClick={this.clearForm} type="button" className="btn btn-danger">
             Reset
           </button>
         </div>
-        <div className="col-4">
+        <div className="col-auto">
           <input type="number" ref='amountInput' onChange={this.updateAmount} className="form-control" />
         </div>
-        <div className='col-5' onChange={this.setOption} >
+        <div className='col-auto' onChange={this.setOption} >
           {this.props.options.map((option, index) => (
             <span key={index} className={'form-check form-check-inline ' + (this.state.option === index ? 'selected' : '')}>
               <label className="form-check-label">

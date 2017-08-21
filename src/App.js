@@ -20,10 +20,13 @@ class App extends Component {
       edge: { number: 'GO', colour: 'black' },
       activeBets: []
     };
+    this.truth = 0;
+    this.lie = 0;
   }
 
   getEdge() {
-    return edges[Math.floor(Math.random() * edges.length)];
+    const currentEdge = edges[Math.floor(Math.random() * edges.length)];
+    return currentEdge;
   }
 
   checkRedBlack(currentEdge, redBlackBet) {
@@ -102,23 +105,26 @@ class App extends Component {
   render() {
     return (
       <div className='container'>
-        <Money amount={this.state.money} resetMoney={this.resetMoney} />
+        <div className='row justify-content-md-center'>
+          <div className='content col-12 col-md-8 p-5 mt-5 mb-5'>
+            <Money amount={this.state.money} resetMoney={this.resetMoney} />
 
-        <div className='row'>
-          <div className='col'>
             <Edge {...this.state.edge} clickHandler={this.clickHandler} />
-          </div>
-        </div>
 
-        <div className='row'>
-          <BettingRow clickHandler={this.makeBet.bind(this, 'redBlack')} options={[{ label: 'Red' }, { label: 'Black' }]} />
-          <BettingRow clickHandler={this.makeBet.bind(this, 'oddEven')} options={[{ label: 'Odd' }, { label: 'Even' }]} />
-          <BettingRow clickHandler={this.makeBet.bind(this, 'topBottom')} options={[{ label: '1-18' }, { label: '19-36' }]} />
-        </div>
-
-        <div className='row'>
-          <div className='col'>
             <MultiBet handler={this.multiBet} />
+
+            <BettingRow
+              amount={this.state.activeBets['redBlack']}
+              clickHandler={this.makeBet.bind(this, 'redBlack')}
+              options={[{ label: 'Red' }, { label: 'Black' }]} />
+            <BettingRow
+              clear={!this.state.activeBets['oddEven']}
+              clickHandler={this.makeBet.bind(this, 'oddEven')}
+              options={[{ label: 'Odd' }, { label: 'Even' }]} />
+            <BettingRow
+              clear={!this.state.activeBets['topBottom']}
+              clickHandler={this.makeBet.bind(this, 'topBottom')}
+              options={[{ label: '1-18' }, { label: '19-36' }]} />
           </div>
         </div>
       </div>

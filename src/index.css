@@ -1,0 +1,16 @@
+body {
+  background: url(../public/background.png) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.content {
+  background-color: white;
+  border-radius: 4.8px;
+}
+
+.spinner {
+  margin-bottom: 0px !important;
+}
+.spinner:hover {
+  opacity: 0.7;
+}
